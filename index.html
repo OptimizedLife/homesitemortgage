@@ -1,450 +1,743 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Homesite Mortgage, your trusted mortgage loan provider, offers competitive rates and personalized home financing solutions. Get pre-approved today!">
-    <meta name="keywords" content="mortgage, home loan, pre-approval, Homesite Mortgage, trusted lender, competitive rates, Florida mortgage">
-    <meta name="author" content="Homesite Mortgage">
-    <meta name="robots" content="index, follow">
-    <title>Homesite Mortgage | Your Trusted Mortgage Partner</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Homesite Mortgage — Florida's family-owned mortgage broker since 1999. Purchase, refinance, FHA, VA, and conventional loans. Apply online from anywhere in Florida. NMLS #353790." />
+  <meta name="robots" content="index, follow" />
+  <title>Homesite Mortgage | Florida Mortgage Broker Since 1999 | NMLS #353790</title>
 
-    <style>
-        /* --- Reset and Variables --- */
-        :root {
-            --primary-navy: #0a2540;     /* Deep Luxury Navy */
-            --accent-gold: #c5a059;      /* Muted Gold */
-            --accent-gold-hover: #b08d4b;
-            --bg-offwhite: #f9f9fb;
-            --text-dark: #333333;
-            --card-radius: 24px;         /* The "HowToLive30" Roundness */
-            --btn-radius: 50px;          /* Pill-shaped buttons */
-            --shadow-soft: 0 12px 24px rgba(0, 0, 0, 0.08);
-        }
+  <!-- Facebook Pixel — fires after consent only (P1.5) -->
+  <script>
+    window._pixelConsent = false;
+    function loadPixel() {
+      if (window._pixelConsent) return;
+      window._pixelConsent = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','560701972154813');
+      fbq('track','PageView');
+    }
+  </script>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-        body {
-            font-family: 'Lato', sans-serif;
-            background: var(--bg-offwhite);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <style>
+    /* ── RESET + TOKENS ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* --- Typography --- */
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif; /* Luxury Serif Font */
-            color: var(--primary-navy);
-            font-weight: 700;
-        }
+    :root {
+      --navy:      #0a1f3c;
+      --navy-mid:  #0d2a50;
+      --navy-light:#0f3366;
+      --gold:      #c5a059;
+      --gold-light:#d4b478;
+      --red:       #cc2200;
+      --white:     #ffffff;
+      --off-white: #f8f7f4;
+      --gray-100:  #f1eff9;
+      --gray-400:  #9ca3af;
+      --gray-600:  #4b5563;
+      --gray-800:  #1f2937;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --max-w: 1100px;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.10);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.18);
+    }
 
-        /* --- Layout --- */
-        .header {
-            background: white;
-            padding: 20px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            position: relative;
-            z-index: 100;
-        }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--gray-800); background: var(--white); line-height: 1.6; }
+    img  { max-width: 100%; display: block; }
+    a    { color: inherit; text-decoration: none; }
 
-        .header h1 {
-            font-size: 1.5em;
-            text-align: center;
-            flex-grow: 1;
-            margin: 0 20px;
-        }
+    /* ── SKIP LINK ────────────────────────────────── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--gold); color: var(--navy); padding: 8px 16px;
+      border-radius: 0 0 8px 8px; font-weight: 600; z-index: 9999;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; }
 
-        .logo {
-            max-width: 220px;
-            height: auto;
-        }
+    /* ── NAV ──────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; gap: 16px;
+    }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-phone {
+      color: var(--gold); font-weight: 600; font-size: 0.95rem;
+      display: flex; align-items: center; gap: 6px;
+      white-space: nowrap;
+    }
+    .nav-phone svg { flex-shrink: 0; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 22px; border-radius: 8px;
+      font-family: var(--font-body); font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; border: none; transition: all 0.18s; white-space: nowrap;
+    }
+    .btn-gold  { background: var(--gold); color: var(--navy); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-lg { padding: 15px 32px; font-size: 1rem; border-radius: 10px; }
+    .btn-xl { padding: 18px 40px; font-size: 1.05rem; border-radius: 10px; }
 
-        /* --- Components --- */
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: var(--card-radius); /* Rounded Corners */
-            box-shadow: var(--shadow-soft);
-            text-align: center;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0c2d55 100%);
+      position: relative; overflow: hidden;
+      padding: 80px 24px 80px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(197,160,89,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(197,160,89,0.15); border: 1px solid rgba(197,160,89,0.3);
+      color: var(--gold); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white); line-height: 1.2; margin-bottom: 20px;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-sub {
+      color: rgba(255,255,255,0.75); font-size: 1.05rem;
+      line-height: 1.7; margin-bottom: 32px; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-trust {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-trust-item {
+      color: rgba(255,255,255,0.6); font-size: 0.82rem;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hero-trust-item .dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
 
-        .container:hover {
-            transform: translateY(-5px); /* Subtle lift on hover */
-        }
+    /* Florida map illustration */
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .florida-map-wrap {
+      position: relative; width: 100%; max-width: 420px;
+    }
+    .florida-map-wrap svg { width: 100%; height: auto; filter: drop-shadow(0 0 40px rgba(197,160,89,0.2)); }
+    .map-card {
+      position: absolute;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(197,160,89,0.25);
+      border-radius: 12px; padding: 12px 16px;
+      color: var(--white);
+    }
+    .map-card-top { top: 10%; right: -8%; }
+    .map-card-bottom { bottom: 18%; left: -6%; }
+    .map-card-label { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+    .map-card-value { font-size: 1.2rem; font-weight: 700; font-family: var(--font-display); margin-top: 2px; }
+    .map-dot {
+      position: absolute; width: 10px; height: 10px;
+      background: var(--gold); border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(197,160,89,0.3);
+    }
+    .map-dot.brevard { bottom: 42%; right: 22%; }
 
-        .container img {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            margin-bottom: 25px;
-        }
+    /* ── TRUST STRIP ──────────────────────────────── */
+    .trust-strip {
+      background: var(--off-white);
+      border-bottom: 1px solid #e8e4dc;
+      padding: 28px 24px;
+    }
+    .trust-strip-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 0;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 32px;
+      border-right: 1px solid #ddd;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon { font-size: 1.5rem; }
+    .trust-label { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+    .trust-sub   { font-size: 0.78rem; color: var(--gray-600); margin-top: 1px; }
 
-        /* --- Buttons (Luxury Style) --- */
-        .btn-gold {
-            background-color: var(--accent-gold);
-            color: white;
-            padding: 15px 35px;
-            border: none;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            border-radius: var(--btn-radius); /* Pill shape */
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
-        }
+    /* ── SECTIONS ─────────────────────────────────── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: var(--max-w); margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--navy); line-height: 1.25; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--gray-600); max-width: 560px; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 48px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
 
-        .btn-gold:hover {
-            background-color: var(--accent-gold-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.6);
-        }
+    /* ── HOW IT WORKS ─────────────────────────────── */
+    .how-section { background: var(--white); }
+    .steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute; top: 32px; left: calc(16.66% + 16px); right: calc(16.66% + 16px);
+      height: 2px; background: linear-gradient(to right, var(--gold), var(--gold));
+      opacity: 0.3;
+    }
+    .step { text-align: center; padding: 32px 24px; }
+    .step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--navy); color: var(--gold);
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; position: relative; z-index: 1;
+      border: 3px solid var(--gold);
+    }
+    .step-title { font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+    .step-desc  { font-size: 0.9rem; color: var(--gray-600); line-height: 1.6; }
 
-        .contact-button {
-            color: var(--primary-navy);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            border: 2px solid var(--primary-navy);
-            padding: 10px 25px;
-            border-radius: var(--btn-radius);
-            transition: all 0.3s ease;
-        }
+    /* ── LOAN TYPES ───────────────────────────────── */
+    .loans-section { background: var(--off-white); }
+    .loans-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .loan-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 28px 24px; border: 1px solid #e8e4dc;
+      transition: all 0.2s; cursor: pointer;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .loan-card:hover {
+      border-color: var(--gold); transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .loan-icon { font-size: 2rem; }
+    .loan-title { font-weight: 700; font-size: 1rem; color: var(--navy); }
+    .loan-desc  { font-size: 0.88rem; color: var(--gray-600); line-height: 1.6; }
+    .loan-link  {
+      font-size: 0.85rem; font-weight: 600; color: var(--gold);
+      display: flex; align-items: center; gap: 4px; margin-top: auto;
+    }
 
-        .contact-button:hover {
-            background: var(--primary-navy);
-            color: white;
-        }
+    /* ── ABOUT TOM ────────────────────────────────── */
+    .about-section { background: var(--white); }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-placeholder {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: 16px; aspect-ratio: 4/5;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px; color: var(--white);
+      border: 2px solid rgba(197,160,89,0.3);
+      position: relative; overflow: hidden;
+    }
+    .about-photo-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(197,160,89,0.1) 0%, transparent 70%);
+    }
 
-        /* --- Content Styling --- */
-        .services h2 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
+    /* SWAP THIS: replace .about-photo-placeholder with <img> when Tom's photo is ready */
+    /* <img src="images/tom-culpepper.jpg" alt="Tom Culpepper, Licensed Mortgage Loan Officer NMLS #353539" class="about-photo" /> */
+    /* .about-photo { width: 100%; border-radius: 16px; object-fit: cover; aspect-ratio: 4/5; } */
 
-        .content-box {
-            font-size: 1.1em;
-            color: #555;
-            margin: 10px auto;
-            max-width: 800px;
-        }
+    .about-photo-icon { font-size: 4rem; position: relative; z-index: 1; }
+    .about-photo-name {
+      font-family: var(--font-display); font-size: 1.3rem;
+      color: var(--white); position: relative; z-index: 1; text-align: center;
+    }
+    .about-photo-nmls {
+      font-size: 0.8rem; color: var(--gold); position: relative; z-index: 1;
+      letter-spacing: 0.05em;
+    }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--gold); color: var(--navy);
+      border-radius: 12px; padding: 16px 20px;
+      font-weight: 700; text-align: center; box-shadow: var(--shadow);
+      min-width: 110px;
+    }
+    .about-badge-num  { font-size: 2rem; font-family: var(--font-display); line-height: 1; }
+    .about-badge-label{ font-size: 0.68rem; letter-spacing: 0.04em; margin-top: 4px; line-height: 1.3; }
 
-        /* --- Footer --- */
-        footer {
-            background: var(--primary-navy);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            font-size: 0.9em;
-        }
+    .about-content .section-sub { max-width: 100%; margin-bottom: 24px; }
+    .about-stat-row { display: flex; gap: 32px; margin: 32px 0; flex-wrap: wrap; }
+    .about-stat { }
+    .about-stat-num { font-family: var(--font-display); font-size: 2rem; color: var(--navy); font-weight: 700; line-height: 1; }
+    .about-stat-label { font-size: 0.82rem; color: var(--gray-600); margin-top: 4px; }
 
-        .footer-links a {
-            color: var(--accent-gold);
-            text-decoration: none;
-            margin: 0 10px;
-        }
+    /* ── CTA BAND ─────────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 72px 24px; text-align: center;
+    }
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--white); margin-bottom: 16px;
+    }
+    .cta-sub { color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 32px; }
+    .cta-disclaimer {
+      margin-top: 20px; font-size: 0.78rem;
+      color: rgba(255,255,255,0.4); max-width: 480px; margin-left: auto; margin-right: auto;
+    }
 
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
+    /* ── FOOTER ───────────────────────────────────── */
+    .footer {
+      background: #050d1a;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px 24px 32px;
+    }
+    .footer-inner {
+      max-width: var(--max-w); margin: 0 auto;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px; margin-bottom: 40px;
+      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand img { height: 40px; width: auto; margin-bottom: 16px; }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; }
+    .footer-col-title { color: var(--gold); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,0.55); font-size: 0.88rem; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-contact { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.9; }
+    .footer-contact a { color: var(--gold); }
 
-        /* --- Accessibility --- */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 10px;
-            background: var(--primary-navy);
-            color: white;
-            padding: 10px;
-            z-index: 1000;
-            transition: top 0.3s;
-        }
-        .skip-link:focus { top: 10px; }
+    .footer-nmls {
+      text-align: center; color: rgba(255,255,255,0.45); font-size: 0.78rem; line-height: 1.9;
+    }
+    .footer-nmls-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .footer-eho {
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.5); font-size: 0.78rem;
+    }
+    .footer-links-row {
+      display: flex; justify-content: center; gap: 24px;
+      margin-top: 12px; flex-wrap: wrap;
+    }
+    .footer-links-row a { color: rgba(255,255,255,0.4); font-size: 0.78rem; transition: color 0.15s; }
+    .footer-links-row a:hover { color: var(--gold); }
 
-        /* --- Mobile Responsiveness --- */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px;
-            }
-            .header h1 {
-                font-size: 1.2em;
-                margin: 10px 0;
-            }
-            .container {
-                margin: 20px;
-                padding: 25px;
-            }
-        }
-        
-        /* --- Popup Styles --- */
-        #prequal-popup {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(10, 37, 64, 0.85); /* Navy transparent background */
-            backdrop-filter: blur(5px);
-        }
+    /* ── STICKY MOBILE CTA ────────────────────────── */
+    .sticky-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--navy); border-top: 2px solid var(--gold);
+      padding: 12px 16px;
+      grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .sticky-cta .btn { width: 100%; justify-content: center; font-size: 0.9rem; padding: 13px; }
 
-        #prequal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 40px;
-            border-radius: var(--card-radius);
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            position: relative;
-            animation: floatUp 0.4s ease-out;
-        }
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .florida-map-wrap { max-width: 280px; }
+      .map-card-top { top: 5%; right: 0; }
+      .map-card-bottom { bottom: 10%; left: 0; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-photo-wrap { max-width: 320px; margin: 0 auto; }
+      .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      .loans-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .trust-item { border-right: none; border-bottom: 1px solid #ddd; width: 100%; }
+      .trust-item:last-child { border-bottom: none; }
+      .trust-strip-inner { flex-direction: column; align-items: stretch; }
+      .nav-phone span { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 56px 20px; }
+      .hero { padding: 48px 20px 64px; }
+      .loans-grid { grid-template-columns: 1fr; }
+      .sticky-cta { display: grid; }
+      body { padding-bottom: 80px; }
+      .hero-actions .btn-xl { width: 100%; }
+      .about-stat-row { gap: 20px; }
+    }
+  </style>
+</head>
 
-        @keyframes floatUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        #prequal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        #prequal-close:hover { color: var(--primary-navy); }
-
-        /* Form Elements */
-        #prequal-content label {
-            font-weight: 700;
-            font-size: 0.9em;
-            color: var(--primary-navy);
-            display: block;
-            margin-top: 15px;
-        }
-
-        #prequal-content input,
-        #prequal-content select,
-        #prequal-content textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Lato', sans-serif;
-            background: #fafafa;
-        }
-        
-        #prequal-content input:focus,
-        #prequal-content select:focus,
-        #prequal-content textarea:focus {
-            outline: none;
-            border-color: var(--primary-navy);
-            background: white;
-        }
-
-        #prequal-content button {
-            background-color: var(--primary-navy);
-            color: #fff;
-            border: none;
-            padding: 15px;
-            border-radius: var(--btn-radius);
-            width: 100%;
-            cursor: pointer;
-            margin-top: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        #prequal-content button:hover {
-            background-color: #163b61;
-        }
-
-    </style>
-    
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '560701972154813');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=560701972154813&ev=PageView&noscript=1"
-    /></noscript>
-    </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="header" role="banner">
-        <img src="https://homesitemortgage.online/images/Homesitelogo.png" alt="Homesite Mortgage Logo" class="logo">
-        <h1>Your Trusted Mortgage Loan Provider!</h1>
-        <a href="contact.html" class="contact-button" aria-label="Contact Homesite Mortgage for inquiries">Contact Us</a>
-    </header>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <main role="main" id="main-content">
-        <div class="container">
-            <img src="https://homesitemortgage.online/images/finalbanner.png" alt="Personalized Mortgage Services">
-        </div>
-        
-        <div class="container">
-            <img src="https://homesitemortgage.online/images/homesitecontact.png" alt="Unlock Your Dream Home with Homesite Mortgage">
-            <h2>Unlock Your Dream Home Today</h2>
-            <p class="content-box">We make the home loan process easy, transparent, and stress-free. Let’s get you pre-approved today.</p>
-            <a href="prequal.html" class="btn-gold" aria-label="Start the pre-approval process with Homesite Mortgage">Get Pre-Approved Now</a>
-        </div>
+  <!-- ── NAV ── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Homesite Mortgage — Home">
+        <img src="images/Homesitelogo.png" alt="Homesite Mortgage Logo" width="160" height="44" />
+      </a>
+      <div class="nav-actions">
+        <a href="tel:3214326611" class="nav-phone" aria-label="Call us at 321-432-6611">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          <span>321-432-6611</span>
+        </a>
+        <a href="prequal.html" class="btn btn-gold">Get Pre-Approved</a>
+      </div>
+    </div>
+  </nav>
 
-        <div class="container">
-            <img src="https://homesitemortgage.online/images/BuildingFutures.png" alt="Building Futures with Homesite Mortgage">
-            <h2>Why Choose Homesite Mortgage?</h2>
-            <p class="content-box">✔ Competitive Rates & Flexible Loan Options</p>
-            <p class="content-box">✔ Fast & Easy Pre-Approval Process</p>
-            <p class="content-box">✔ Personalized Loan Solutions</p>
-            <p class="content-box">✔ Family-owned Florida mortgage broker since 1999 — 27 years serving borrowers statewide</p>
-        </div>
-    </main>
+  <main id="main-content">
 
-    <footer role="contentinfo">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Equal Housing Opportunity Logo" style="flex-shrink: 0; color: white;">
-                <title>Equal Housing Opportunity</title>
-                <rect x="2" y="2" width="60" height="60" fill="none" stroke="currentColor" stroke-width="2.5"/>
-                <path d="M32 12 L52 28 L48 28 L48 50 L16 50 L16 28 L12 28 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <line x1="22" y1="36" x2="42" y2="36" stroke="currentColor" stroke-width="2"/>
-                <line x1="22" y1="42" x2="42" y2="42" stroke="currentColor" stroke-width="2"/>
-            </svg>
-            <div style="text-align: left; max-width: 620px;">
-                <p style="margin: 3px 0;"><strong>Homesite Mortgage</strong> NMLS #353790</p>
-                <p style="margin: 3px 0;">Tom Culpepper NMLS #353539 &middot; Tracy Cody NMLS #886861 &middot; Brandon Culpepper NMLS #1577726</p>
-                <p style="margin: 3px 0;">Verify at <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener" style="color: var(--accent-gold);">nmlsconsumeraccess.org</a></p>
-            </div>
-        </div>
-        <p>📞 Call us: 321-432-6611 | 📧 Email: tcloans1@gmail.com</p>
-        <p>© 2026 Homesite Mortgage. All rights reserved. Licensed Mortgage Lender. Equal Housing Opportunity.</p>
-        <div class="footer-links">
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </div>
-    </footer>
+    <!-- ── HERO ── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-inner">
 
-    <div id="prequal-popup">
-      <div id="prequal-content">
-        <span id="prequal-close">&times;</span>
-        <h2 style="text-align:center;">Homesite Mortgage 🏠</h2>
-        <h3 style="text-align:center; font-size: 1.2em; color:#555; font-family:'Lato', sans-serif;">Get Prequalified Today</h3>
-        
-        <form action="https://formsubmit.co/tcloans1@gmail.com" method="POST">
-          <input type="hidden" name="_next" value="https://homesitemortgage.online/thank-you.html">
-          <input type="hidden" name="_autoresponse" value="Thank you for submitting your prequalification form. We will reach out shortly.">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_cc" value="brandonjculpepper@gmail.com">
-
-          <label for="name">Full Name</label>
-          <input type="text" name="name" required>
-
-          <label for="email">Email</label>
-          <input type="email" name="email" required>
-
-          <label for="phone">Phone Number</label>
-          <input type="tel" name="phone" required>
-
-          <label for="loanType">Loan Type</label>
-          <select name="loanType" required>
-            <option value="">Select</option>
-            <option value="purchase">Purchase</option>
-            <option value="refinance">Refinance</option>
-          </select>
-
-          <label for="propertyType">Property Type</label>
-          <select name="propertyType" required>
-            <option value="">Select</option>
-            <option value="single_family">Single Family Home</option>
-            <option value="condo">Condominium</option>
-            <option value="townhome">Townhome</option>
-            <option value="multi_family">Multi-Family</option>
-            <option value="vacant_land">Vacant Land</option>
-          </select>
-
-          <label for="amount">Estimated Loan Amount</label>
-          <input type="number" name="amount" required>
-
-          <label for="income">Estimated Annual Income</label>
-          <input type="number" name="income" required>
-
-          <label for="credit">Estimated Credit Score</label>
-          <select name="credit" required>
-            <option value="">Select</option>
-            <option value="excellent">Excellent (720+)</option>
-            <option value="good">Good (680-719)</option>
-            <option value="fair">Fair (620-679)</option>
-            <option value="poor">Poor (below 620)</option>
-          </select>
-
-          <label for="message">Additional Details</label>
-          <textarea name="message" rows="4"></textarea>
-
-          <div style="margin-top: 20px; padding: 15px; background: #f5f5f7; border-radius: 8px; text-align: left;">
-            <label style="display: flex; align-items: flex-start; font-weight: 400; font-size: 0.82em; line-height: 1.45; color: #444; margin-top: 0; cursor: pointer;">
-              <input type="checkbox" name="tcpa_consent" required style="width: auto; margin: 3px 10px 0 0; flex-shrink: 0; padding: 0;">
-              <span>I consent to receive calls and text messages, including via automated technology, from Homesite Mortgage at the number provided. Consent is not a condition of service. Message and data rates may apply. Reply STOP to opt out.</span>
-            </label>
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span>🏠</span> Florida's Family-Owned Mortgage Broker
           </div>
+          <h1 class="hero-title" id="hero-heading">
+            Your Florida Home Loan,<br/><span>Handled Personally.</span>
+          </h1>
+          <p class="hero-sub">
+            Since 1999, Homesite Mortgage has helped Florida families buy homes, lower their rates, and build real wealth through real estate — one loan at a time, with a real person on every call.
+          </p>
+          <div class="hero-actions">
+            <a href="prequal.html" class="btn btn-gold btn-xl">Start Your Pre-Approval →</a>
+            <a href="contact.html" class="btn btn-outline btn-lg">Talk to Tom</a>
+          </div>
+          <div class="hero-trust">
+            <span class="hero-trust-item"><span class="dot"></span>Licensed in Florida · NMLS #353790</span>
+            <span class="hero-trust-item"><span class="dot"></span>
+              <span class="years-since-1999">27</span> years in business
+            </span>
+            <span class="hero-trust-item"><span class="dot"></span>Equal Housing Opportunity</span>
+          </div>
+        </div>
 
-          <button type="submit">Submit Request</button>
-        </form>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="florida-map-wrap">
+            <img
+              src="images/florida-map.webp"
+              alt="Illustrated gold map of Florida with Melbourne marked as Homesite Mortgage headquarters"
+              width="420"
+              height="600"
+              loading="eager"
+              style="width:100%;height:auto;border-radius:12px;"
+            />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── TRUST STRIP ── -->
+    <div class="trust-strip" role="complementary" aria-label="Trust indicators">
+      <div class="trust-strip-inner">
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">🏠</span>
+          <div>
+            <div class="trust-label">Family-Owned Since 1999</div>
+            <div class="trust-sub">Founded by Tom Culpepper, NMLS #353539</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">📋</span>
+          <div>
+            <div class="trust-label">Licensed in Florida Only</div>
+            <div class="trust-sub">Homesite Mortgage Corp · NMLS #353790</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">📞</span>
+          <div>
+            <div class="trust-label">No 800 Numbers, No Runaround</div>
+            <div class="trust-sub">Tom answers and handles your loan personally</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">🔒</span>
+          <div>
+            <div class="trust-label">Apply 100% Online</div>
+            <div class="trust-sub">By phone, email, and secure online tools</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <script>
-      // open popup after 3 seconds
-      window.onload = function() {
-        setTimeout(function() {
-          document.getElementById("prequal-popup").style.display = "block";
-        }, 3000);
-      };
-      // close button
-      document.getElementById("prequal-close").onclick = function() {
-        document.getElementById("prequal-popup").style.display = "none";
-      };
-      // click outside to close
-      window.onclick = function(event) {
-        if (event.target == document.getElementById("prequal-popup")) {
-          document.getElementById("prequal-popup").style.display = "none";
-        }
-      };
-    </script>
+    <!-- ── HOW IT WORKS ── -->
+    <section class="how-section" aria-labelledby="how-heading">
+      <div class="section-inner">
+        <div class="section-header center">
+          <div class="section-eyebrow">Simple Process</div>
+          <h2 class="section-title" id="how-heading">From Application to Closing — We Keep It Simple</h2>
+          <p class="section-sub">No jargon, no surprises. Here's exactly how it works when you work with Homesite Mortgage.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num" aria-hidden="true">1</div>
+            <h3 class="step-title">Submit Your Info</h3>
+            <p class="step-desc">Fill out our secure online prequal form in under 5 minutes. No hard credit pull at this stage — just the basics to get started.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">2</div>
+            <h3 class="step-title">We Reach Out to You</h3>
+            <p class="step-desc">Your submission is personally reviewed and someone from our team follows up within 1 business hour to discuss your options, answer questions, and map out next steps.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">3</div>
+            <h3 class="step-title">Close Your Loan</h3>
+            <p class="step-desc">Tracy handles processing and closing with the same personal attention. You'll always know who to call — because it's the same two people, start to finish.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOAN TYPES ── -->
+    <section class="loans-section" aria-labelledby="loans-heading">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-eyebrow">Loan Programs</div>
+          <h2 class="section-title" id="loans-heading">What Are You Looking For?</h2>
+          <p class="section-sub">We originate all major loan types in Florida. Not sure which fits your situation? Tom will tell you exactly what you qualify for on your first call.</p>
+        </div>
+        <div class="loans-grid">
+          <article class="loan-card">
+            <div class="loan-icon" aria-hidden="true">🔑</div>
+            <h3 class="loan-title">Home Purchase</h3>
+            <p class="loan-desc">First home or your fifth — we'll find the right loan for your situation and budget, fast.</p>
+            <span class="loan-link">Learn more →</span>
+          </article>
+          <article class="loan-card">
+            <div class="loan-icon" aria-hidden="true">🔄</div>
+            <h3 class="loan-title">Refinance</h3>
+            <p class="loan-desc">Lower your rate, reduce your monthly payment, or tap your equity. We'll run the numbers honestly.</p>
+            <span class="loan-link">Learn more →</span>
+          </article>
+          <article class="loan-card">
+            <div class="loan-icon" aria-hidden="true">🏛️</div>
+            <h3 class="loan-title">FHA Loans</h3>
+            <p class="loan-desc">As low as 3.5% down. A great path for first-time buyers with good credit history.</p>
+            <span class="loan-link">Learn more →</span>
+          </article>
+          <article class="loan-card">
+            <div class="loan-icon" aria-hidden="true">⭐</div>
+            <h3 class="loan-title">VA Loans</h3>
+            <p class="loan-desc">Zero down payment for eligible veterans and active-duty service members. You've earned it.</p>
+            <span class="loan-link">Learn more →</span>
+          </article>
+          <article class="loan-card">
+            <div class="loan-icon" aria-hidden="true">📊</div>
+            <h3 class="loan-title">Conventional Loans</h3>
+            <p class="loan-desc">Flexible terms, competitive rates, and no upfront mortgage insurance for qualified buyers.</p>
+            <span class="loan-link">Learn more →</span>
+          </article>
+          <article class="loan-card">
+            <div class="loan-icon" aria-hidden="true">🏢</div>
+            <h3 class="loan-title">Investment Property</h3>
+            <p class="loan-desc">Growing your Florida real estate portfolio? We've been financing investment properties since 1999.</p>
+            <span class="loan-link">Learn more →</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT TOM ── -->
+    <section class="about-section" aria-labelledby="about-heading">
+      <div class="section-inner">
+        <div class="about-inner">
+
+          <div class="about-photo-wrap">
+            <!--
+              PHOTO PLACEHOLDER — swap this entire block with:
+              <img src="images/tom-culpepper.jpg"
+                   alt="Tom Culpepper, Broker/Owner, Homesite Mortgage — NMLS #353539"
+                   class="about-photo" width="480" height="600" />
+              when Tom's portrait is ready.
+            -->
+            <div class="about-photo-placeholder" role="img" aria-label="Portrait placeholder for Tom Culpepper">
+              <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:relative;z-index:1;opacity:0.6;">
+                <circle cx="60" cy="45" r="32" fill="rgba(197,160,89,0.3)" stroke="rgba(197,160,89,0.5)" stroke-width="2"/>
+                <path d="M 5 140 C 5 100 25 82 60 82 C 95 82 115 100 115 140" fill="rgba(197,160,89,0.2)" stroke="rgba(197,160,89,0.4)" stroke-width="2"/>
+              </svg>
+              <div style="position:relative;z-index:1;text-align:center;">
+                <div class="about-photo-name">Tom Culpepper</div>
+                <div class="about-photo-nmls">Broker / Owner · NMLS #353539</div>
+                <div style="margin-top:10px;font-size:0.72rem;color:rgba(197,160,89,0.6);letter-spacing:0.06em;">PORTRAIT COMING SOON</div>
+              </div>
+            </div>
+            <div class="about-badge" aria-label="27 years in the mortgage industry">
+              <div class="about-badge-num"><span class="years-since-1999">27</span></div>
+              <div class="about-badge-label">YEARS IN<br/>MORTGAGES</div>
+            </div>
+          </div>
+
+          <div class="about-content">
+            <div class="section-eyebrow">Who You're Working With</div>
+            <h2 class="section-title" id="about-heading">A Broker Who Has Seen Every Situation</h2>
+            <p class="section-sub">
+              Tom Culpepper founded Homesite Mortgage in 1999 with one goal: give Florida borrowers the same honest, personal guidance he'd want for his own family. In <span class="years-since-1999">27</span> years, that hasn't changed.
+            </p>
+            <p class="section-sub" style="margin-top:14px;">
+              When you submit a prequal, Tom sees it personally. He calls you personally. He doesn't hand you off to a call center or a junior processor. Tracy Cody handles your closing with the same care — she's been with Homesite Mortgage for years and knows what it takes to get a loan to the finish line.
+            </p>
+
+            <div class="about-stat-row">
+              <div class="about-stat">
+                <div class="about-stat-num"><span class="years-since-1999">27</span>+</div>
+                <div class="about-stat-label">Years in business</div>
+              </div>
+              <div class="about-stat">
+                <div class="about-stat-num">FL</div>
+                <div class="about-stat-label">Licensed statewide</div>
+              </div>
+              <div class="about-stat">
+                <div class="about-stat-num">3</div>
+                <div class="about-stat-label">Licensed MLOs on staff</div>
+              </div>
+            </div>
+
+            <a href="prequal.html" class="btn btn-gold btn-lg">Start Your Pre-Approval</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA BAND ── -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="section-inner" style="max-width:640px;">
+        <div class="section-eyebrow" style="color:var(--gold);text-align:center;">Ready to Move Forward?</div>
+        <h2 class="cta-title" id="cta-heading">Get Pre-Approved Today — It Takes Less Than 5 Minutes</h2>
+        <p class="cta-sub">No hard credit pull. No commitment. Tom will call you within 1 business hour to walk through your options.</p>
+        <a href="prequal.html" class="btn btn-gold btn-xl">Start Your Pre-Approval →</a>
+        <p class="cta-disclaimer">
+          Or call us directly: <a href="tel:3214326611" style="color:var(--gold);font-weight:600;">321-432-6611</a> ·
+          <a href="mailto:tcloans1@gmail.com" style="color:rgba(255,255,255,0.5);">tcloans1@gmail.com</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/Homesitelogo.png" alt="Homesite Mortgage" width="140" height="38" />
+          <p style="margin-top:12px;">Family-owned Florida mortgage brokerage since 1999. Serving borrowers statewide — by phone, email, and secure online tools.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Quick Links</p>
+          <ul class="footer-links">
+            <li><a href="prequal.html">Get Pre-Approved</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener">NMLS Consumer Access ↗</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Contact</p>
+          <div class="footer-contact">
+            <div>📞 <a href="tel:3214326611">321-432-6611</a></div>
+            <div>📧 <a href="mailto:tcloans1@gmail.com">tcloans1@gmail.com</a></div>
+            <div style="margin-top:8px;color:rgba(255,255,255,0.35);font-size:0.8rem;">Melbourne, FL (by appointment only)<br/>Online-first · Available statewide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-nmls">
+        <div class="footer-nmls-row">
+          <div class="footer-eho" aria-label="Equal Housing Opportunity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="Equal Housing Opportunity logo">
+              <polygon points="50,8 96,48 84,48 84,94 16,94 16,48 4,48" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6"/>
+              <rect x="29" y="57" width="42" height="9" fill="rgba(255,255,255,0.5)"/>
+              <rect x="29" y="72" width="42" height="9" fill="rgba(255,255,255,0.5)"/>
+            </svg>
+            <span>Equal Housing Opportunity</span>
+          </div>
+        </div>
+        <div>
+          🏡 <strong style="color:rgba(255,255,255,0.6);">Homesite Mortgage NMLS #353790</strong> &nbsp;|&nbsp;
+          Tom Culpepper NMLS #353539 &nbsp;|&nbsp;
+          Tracy Cody NMLS #886861 &nbsp;|&nbsp;
+          Brandon Culpepper NMLS #1577726
+        </div>
+        <div style="margin-top:6px;">
+          Verify at <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener" style="color:var(--gold);">www.nmlsconsumeraccess.org</a>
+        </div>
+        <div class="footer-links-row">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="prequal.html">Get Pre-Approved</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div style="margin-top:16px;color:rgba(255,255,255,0.25);font-size:0.74rem;">
+          © <span id="copy-year">2026</span> Homesite Mortgage Corporation. All rights reserved. Licensed Mortgage Lender. Equal Housing Opportunity. Homesite Mortgage originates loans in Florida only. This is not a commitment to lend. All loans subject to credit approval.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── STICKY MOBILE CTA ── -->
+  <div class="sticky-cta" aria-label="Quick actions">
+    <a href="tel:3214326611" class="btn btn-outline">📞 Call Tom</a>
+    <a href="prequal.html" class="btn btn-gold">Get Pre-Approved</a>
+  </div>
+
+  <script>
+    // Auto-calculate years in business
+    (function() {
+      var yr = new Date().getFullYear() - 1999;
+      document.querySelectorAll('.years-since-1999').forEach(function(el) {
+        el.textContent = yr;
+      });
+      var cy = document.getElementById('copy-year');
+      if (cy) cy.textContent = new Date().getFullYear();
+    })();
+  </script>
 
 </body>
 </html>
