@@ -75,6 +75,13 @@
       height: 68px; gap: 16px;
     }
     .nav-logo img { height: 44px; width: auto; }
+    .nav-logo-wrap {
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 4px 10px;
+      display: inline-flex;
+      align-items: center;
+    }
     .nav-actions { display: flex; align-items: center; gap: 12px; }
     .nav-phone {
       color: var(--gold); font-weight: 600; font-size: 0.95rem;
@@ -414,7 +421,9 @@
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Homesite Mortgage — Home">
-        <img src="images/Homesitelogo.png" alt="Homesite Mortgage Logo" width="160" height="44" />
+        <span class="nav-logo-wrap">
+          <img src="images/Homesitelogo.png" alt="Homesite Mortgage Logo" width="160" height="44" />
+        </span>
       </a>
       <div class="nav-actions">
         <a href="tel:3214326611" class="nav-phone" aria-label="Call us at 321-432-6611">
@@ -681,7 +690,9 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="images/Homesitelogo.png" alt="Homesite Mortgage" width="140" height="38" />
+          <span class="nav-logo-wrap">
+            <img src="images/Homesitelogo.png" alt="Homesite Mortgage" width="140" height="38" />
+          </span>
           <p style="margin-top:12px;">Family-owned Florida mortgage brokerage since 1999. Serving borrowers statewide — by phone, email, and secure online tools.</p>
         </div>
         <div>
