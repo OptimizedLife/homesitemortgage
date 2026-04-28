@@ -414,6 +414,70 @@
       .about-stat-row { gap: 20px; }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MortgageBroker",
+        "@id": "https://homesitemortgage.online/#business",
+        "name": "Homesite Mortgage",
+        "url": "https://homesitemortgage.online",
+        "telephone": "+13214326611",
+        "email": "tcloans1@gmail.com",
+        "foundingDate": "1999",
+        "description": "Family-owned Florida mortgage broker since 1999. Licensed statewide. Purchase, refinance, FHA, VA, and conventional loans. NMLS #353790.",
+        "areaServed": {
+          "@type": "State",
+          "name": "Florida"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Melbourne",
+          "addressRegion": "FL",
+          "addressCountry": "US"
+        },
+        "employee": [
+          {
+            "@type": "Person",
+            "name": "Tom Culpepper",
+            "jobTitle": "Mortgage Broker / Owner",
+            "identifier": "NMLS #353539"
+          },
+          {
+            "@type": "Person",
+            "name": "Tracy Cody",
+            "jobTitle": "Loan Processor",
+            "identifier": "NMLS #886861"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Loan Programs",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Home Purchase Loans"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Refinance Loans"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "FHA Loans"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "VA Loans"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Conventional Loans"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Investment Property Loans"}}
+          ]
+        },
+        "sameAs": [
+          "https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/353790"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://homesitemortgage.online/#website",
+        "url": "https://homesitemortgage.online",
+        "name": "Homesite Mortgage",
+        "publisher": {"@id": "https://homesitemortgage.online/#business"}
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
