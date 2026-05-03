@@ -158,7 +158,7 @@
         <div class="trust">
             <p><strong>Call Us:</strong> 321-432-6611</p>
             <p><strong>Email:</strong> tcloans1@gmail.com</p>
-            <p><em>“Family-owned Florida mortgage broker since 1999 — 27 years serving borrowers statewide”</em></p>
+            <p><em>“Family-owned Florida mortgage broker since 1999 — <span class="years-in-business"></span> years serving borrowers statewide”</em></p>
         </div>
     </main>
 
@@ -182,5 +182,15 @@
             <a href="privacy-policy.html">Privacy Policy</a>
         </div>
     </footer>
+
+    <script>
+      // Auto-calculate years in business
+      (function() {
+        var yr = new Date().getFullYear() - 1999;
+        document.querySelectorAll('.years-in-business').forEach(function(el) {
+          el.textContent = yr;
+        });
+      })();
+    </script>
 </body>
 </html>
