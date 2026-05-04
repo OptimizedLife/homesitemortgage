@@ -12,17 +12,42 @@
   <link rel="canonical" href="https://homesitemortgage.online/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-  <!-- Facebook Pixel — fires after consent only (P1.5) -->
+  <!-- Facebook Pixel — gated behind CookieYes "Advertisement" consent (P1.5.2) -->
   <script>
-    window._pixelConsent = false;
-    function loadPixel() {
-      if (window._pixelConsent) return;
-      window._pixelConsent = true;
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init','560701972154813');
-      fbq('track','PageView');
+  document.addEventListener("cookieyes_consent_update", function(eventData) {
+    var data = eventData.detail;
+    if (data.accepted && data.accepted.indexOf("advertisement") > -1) {
+      loadFBPixel();
     }
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof CookieYes !== "undefined") {
+      var consent = CookieYes.getConsent();
+      if (consent && consent.advertisement === "yes") {
+        loadFBPixel();
+      }
+    }
+  });
+
+  function loadFBPixel() {
+    if (window.fbqLoaded) return;
+    window.fbqLoaded = true;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '560701972154813');
+    fbq('track', 'PageView');
+  }
   </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=560701972154813&ev=PageView&noscript=1"
+  /></noscript>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
