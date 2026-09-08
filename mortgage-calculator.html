@@ -28,28 +28,91 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type":"ListItem","position":1,"name":"Home","item":"https://homesitemortgage.online/"},
-          {"@type":"ListItem","position":2,"name":"Mortgage Calculator","item":"https://homesitemortgage.online/mortgage-calculator.html"}
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://homesitemortgage.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Mortgage Calculator",
+          "item": "https://homesitemortgage.online/mortgage-calculator.html"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Homesite Mortgage Payment Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
       },
-      {
-        "@type": "WebApplication",
-        "name": "Homesite Mortgage Payment Calculator",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Any",
-        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-        "url": "https://homesitemortgage.online/mortgage-calculator.html",
-        "provider": {"@type": "MortgageBroker", "name": "Homesite Mortgage", "identifier": "NMLS #353790"}
+      "url": "https://homesitemortgage.online/mortgage-calculator.html",
+      "provider": {
+        "@type": "MortgageBroker",
+        "name": "Homesite Mortgage",
+        "identifier": "NMLS #353790"
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does this estimate actually include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Principal and interest, property tax, home insurance, PMI when it applies, and HOA dues if you enter them. Those five are what the chart breaks out. It does not include closing costs, prepaid items, or anything else collected at the closing table."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does nothing appear until I fill in the down payment, rate and term?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "So the number is yours rather than ours. Until all three are supplied the tool has nothing real to work from, and an estimate built on placeholder figures is worse than no estimate at all."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my Florida payment different from what a national calculator shows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Property taxes and property insurance vary a great deal by county and by individual property here, and they make up more of the monthly figure than buyers arriving from other states usually expect. Coastal and flood-zone properties carry their own insurance requirements. Condo buyers also have association dues on top, and Florida's milestone inspection and structural reserve rules have changed what some associations collect."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will my actual payment match this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Treat it as a planning number, not a quote. The figure that matters comes after a lender has looked at your credit profile, the program you are eligible for, the property type and how you intend to occupy it. Any of those can move it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between this and a prequalification?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is arithmetic you control. A prequalification is us looking at your actual situation and telling you which programs fit it. It takes about five minutes, there is no hard credit pull, and Tom Culpepper reviews every one personally."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
   <style>
     :root {
       --navy:#0a1f3c; --navy-mid:#0d2a50; --navy-light:#0f3366;
@@ -140,6 +203,13 @@
     .amort th, .amort td { padding:9px 8px; text-align:right; border-bottom:1px solid #eef1f5; white-space:nowrap; }
     .amort th:first-child, .amort td:first-child { text-align:left; }
     .amort th { color:var(--gray-600); font-weight:600; }
+    .explain { max-width:820px; margin:0 auto; padding:8px 24px 0; }
+    .explain h2 { font-size:1.35rem; color:var(--navy); margin:0 0 6px; }
+    .explain > p { color:var(--gray-600); margin:0 0 18px; }
+    .explain-item { border-top:1px solid #e8e4dc; padding:16px 2px; }
+    .explain-item:last-child { border-bottom:1px solid #e8e4dc; }
+    .explain-item h3 { font-size:1rem; color:var(--navy); margin:0 0 6px; }
+    .explain-item p { margin:0; color:var(--gray-600); font-size:0.95rem; line-height:1.65; }
     .disclaimer { max-width:820px; margin:22px auto 0; padding:0 24px; font-size:0.8rem; color:var(--gray-600); line-height:1.6; }
     .cta { background:var(--off-white); margin-top:40px; padding:52px 24px; text-align:center; }
     .cta h2 { color:var(--navy); font-size:1.6rem; margin-bottom:10px; }
@@ -337,6 +407,33 @@
     <p class="disclaimer">
       <strong>Important:</strong> This calculator is for general educational planning only. It uses the figures <em>you</em> enter and does not reflect any specific Homesite Mortgage rate, program, or offer. Property tax, insurance, and PMI figures are illustrative estimates. Your actual rate, payment, and costs depend on your individual situation and are subject to credit approval. This is not a commitment to lend. Homesite Mortgage originates loans in Florida only. Equal Housing Opportunity. NMLS #353790.
     </p>
+
+    <section class="explain" aria-labelledby="calc-explain">
+      <h2 id="calc-explain">Reading the estimate</h2>
+      <p>What the number covers, and what it cannot know about you.</p>
+      <div>
+        <div class="explain-item">
+          <h3>What does this estimate actually include?</h3>
+          <p>Principal and interest, property tax, home insurance, PMI when it applies, and HOA dues if you enter them. Those five are what the chart breaks out. It does not include closing costs, prepaid items, or anything else collected at the closing table.</p>
+        </div>
+        <div class="explain-item">
+          <h3>Why does nothing appear until I fill in the down payment, rate and term?</h3>
+          <p>So the number is yours rather than ours. Until all three are supplied the tool has nothing real to work from, and an estimate built on placeholder figures is worse than no estimate at all.</p>
+        </div>
+        <div class="explain-item">
+          <h3>Why is my Florida payment different from what a national calculator shows?</h3>
+          <p>Property taxes and property insurance vary a great deal by county and by individual property here, and they make up more of the monthly figure than buyers arriving from other states usually expect. Coastal and flood-zone properties carry their own insurance requirements. Condo buyers also have association dues on top, and Florida's milestone inspection and structural reserve rules have changed what some associations collect.</p>
+        </div>
+        <div class="explain-item">
+          <h3>Will my actual payment match this?</h3>
+          <p>Treat it as a planning number, not a quote. The figure that matters comes after a lender has looked at your credit profile, the program you are eligible for, the property type and how you intend to occupy it. Any of those can move it.</p>
+        </div>
+        <div class="explain-item">
+          <h3>What is the difference between this and a prequalification?</h3>
+          <p>This is arithmetic you control. A prequalification is us looking at your actual situation and telling you which programs fit it. It takes about five minutes, there is no hard credit pull, and Tom Culpepper reviews every one personally.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="cta">
       <h2>Want your real numbers?</h2>
