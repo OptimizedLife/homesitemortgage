@@ -7,23 +7,24 @@
   <script src="/js/ga4.js" defer></script>
   <script src="/js/google-ads.js" defer></script>
 <script src="/js/attribution.js"></script>
+<script src="/js/sticky-cta.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A step-by-step first-time home buyer guide for Brevard County and Florida's Space Coast — loan options, down payment help, and the path to closing. Homesite Mortgage, family-owned since 1999. NMLS #353790." />
+  <meta name="description" content="VA financing on the Space Coast: how entitlement works, why a beachside condo needs VA project approval, what the appraisal checks, and using entitlement a second time." />
   <meta name="robots" content="index, follow" />
-  <title>First-Time Home Buyer Guide — Brevard County, FL | Homesite Mortgage NMLS #353790</title>
+  <title>VA Loans in Brevard County &amp; the Space Coast, FL | Homesite Mortgage</title>
   <meta property="og:site_name" content="Homesite Mortgage" />
-  <meta property="og:type" content="article" />
-  <link rel="canonical" href="https://homesitemortgage.online/first-time-home-buyer-brevard-county-fl.html" />
-  <meta property="og:title" content="First-Time Home Buyer Guide — Brevard County, FL | Homesite Mortgage NMLS #353790" />
-  <meta property="og:description" content="A step-by-step first-time home buyer guide for Brevard County and Florida's Space Coast — loan options, down payment help, and the path to closing. Homesite Mortgage, family-owned since 1999. NMLS #353790." />
-  <meta property="og:url" content="https://homesitemortgage.online/first-time-home-buyer-brevard-county-fl.html" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://homesitemortgage.online/va-loans-brevard-county-fl.html" />
+  <meta property="og:title" content="VA Loans in Brevard County & the Space Coast, FL | Homesite Mortgage" />
+  <meta property="og:description" content="VA financing on the Space Coast: how entitlement works, why a beachside condo needs VA project approval, what the appraisal checks, and using entitlement a second time." />
+  <meta property="og:url" content="https://homesitemortgage.online/va-loans-brevard-county-fl.html" />
   <meta property="og:image" content="https://homesitemortgage.online/images/og-card.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="First-Time Home Buyer Guide — Brevard County, FL | Homesite Mortgage NMLS #353790" />
-  <meta name="twitter:description" content="A step-by-step first-time home buyer guide for Brevard County and Florida's Space Coast — loan options, down payment help, and the path to closing. Homesite Mortgage, family-owned since 1999. NMLS #353790." />
+  <meta name="twitter:title" content="VA Loans in Brevard County & the Space Coast, FL | Homesite Mortgage" />
+  <meta name="twitter:description" content="VA financing on the Space Coast: how entitlement works, why a beachside condo needs VA project approval, what the appraisal checks, and using entitlement a second time." />
   <meta name="twitter:image" content="https://homesitemortgage.online/images/og-card.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -202,12 +203,6 @@
     }
     .cta-disclaimer a { color: var(--gold); font-weight: 600; }
 
-    /* Prose helper for guide body */
-    .prose p { color: var(--gray-600); font-size: 1.02rem; line-height: 1.7; margin-bottom: 16px; max-width: 760px; }
-    .prose p:last-child { margin-bottom: 0; }
-    .prose a { color: var(--navy); font-weight: 600; text-decoration: underline; }
-    .prose a:hover { color: var(--gold-text); }
-
     /* Footer (clones index.html) */
     .footer {
       background: #050d1a;
@@ -289,6 +284,31 @@
       body { padding-bottom: 80px; }
       .page-hero-actions .btn-xl { width: 100%; }
       .page-hero-actions .btn-lg { width: 100%; }
+
+      /* Measured on a 375x812 viewport. The cookie banner covers from y=552, and
+         while it is up the sticky bar is lifted to y=466 - so the hero owned only
+         the top 466px. The h1 ran to three lines (151px) and four on DSCR and
+         Purchase (188px), which pushed the opening paragraph under the bar: 18px
+         of it hidden on FHA, 45px on VA, 83px on Purchase, 111px on DSCR. The
+         hero's own buttons were covered outright.
+         Tightening the type gives the paragraph back. */
+      .page-hero { padding: 16px 20px 36px; }
+      .page-hero .section-eyebrow { margin-bottom: 6px; }
+      .page-hero h1 { font-size: 1.7rem; margin-bottom: 10px; }
+      .page-hero .lede { font-size: 1rem; line-height: 1.55; margin-bottom: 16px; }
+      /* The two buttons stack full width, so they cost 133px between them. 14px
+         padding keeps both well above a 44px touch target while giving the second
+         one back most of the room it was losing to the banner. */
+      .page-hero-actions { gap: 10px; }
+      .page-hero-actions .btn-xl, .page-hero-actions .btn-lg { padding: 14px 24px; }
+
+      /* The bar and the hero buttons are the same two actions with the same
+         destinations, so while the hero buttons are on screen the bar is only
+         covering them. See js/sticky-cta.js. Hidden with opacity and visibility,
+         not a transform: the bar sits at bottom:33vh while the banner is up, so a
+         translateY of its own height leaves it on screen, on top of the banner. */
+      .sticky-cta { transition: opacity 180ms ease, visibility 180ms ease; }
+      .sticky-cta.is-behind-hero { opacity: 0; visibility: hidden; pointer-events: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
@@ -342,87 +362,110 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "First-Time Home Buyer Guide — Brevard County, FL",
-          "item": "https://homesitemortgage.online/first-time-home-buyer-brevard-county-fl.html"
+          "name": "VA Loans in Brevard County",
+          "item": "https://homesitemortgage.online/va-loans-brevard-county-fl.html"
         }
       ]
     },
     {
-      "@type": "Article",
-      "headline": "First-Time Home Buyer in Brevard County, Florida — A Step-by-Step Guide",
-      "description": "A step-by-step first-time home buyer guide for Brevard County and Florida's Space Coast — loan options, down payment assistance, and the path from prequalification to closing.",
-      "datePublished": "2026-06-15",
-      "dateModified": "2026-06-15",
-      "image": "https://homesitemortgage.online/images/og-card.png",
-      "author": {
-        "@type": "Organization",
-        "name": "Homesite Mortgage",
-        "@id": "https://homesitemortgage.online/#business"
-      },
-      "publisher": {
+      "@type": "Service",
+      "serviceType": "VA home loan brokerage",
+      "name": "VA Loan Brokerage on the Space Coast",
+      "description": "VA financing on the Space Coast: how entitlement works, why a beachside condo needs VA project approval, what the appraisal checks, and using entitlement a second time.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Melbourne, FL"
+        },
+        {
+          "@type": "City",
+          "name": "Satellite Beach, FL"
+        },
+        {
+          "@type": "City",
+          "name": "Indialantic, FL"
+        },
+        {
+          "@type": "City",
+          "name": "Viera, FL"
+        },
+        {
+          "@type": "City",
+          "name": "Palm Bay, FL"
+        },
+        {
+          "@type": "City",
+          "name": "Merritt Island, FL"
+        },
+        {
+          "@type": "City",
+          "name": "Titusville, FL"
+        },
+        {
+          "@type": "City",
+          "name": "Cocoa Beach, FL"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Brevard County, FL"
+        }
+      ],
+      "provider": {
         "@type": "MortgageBroker",
         "name": "Homesite Mortgage",
         "@id": "https://homesitemortgage.online/#business"
       },
-      "mainEntityOfPage": "https://homesitemortgage.online/first-time-home-buyer-brevard-county-fl.html",
-      "about": {
-        "@type": "Place",
-        "name": "Brevard County, Florida",
-        "containedInPlace": {
-          "@type": "State",
-          "name": "Florida"
-        }
-      }
+      "url": "https://homesitemortgage.online/va-loans-brevard-county-fl.html"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Do you have an office in Brevard County?",
+          "name": "Does the VA actually lend me the money?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes — 2754 Aurora Road in Melbourne, and we have been family-owned here since 1999. Come in, or handle it by phone and email if that suits you better. Either way you get the same small team rather than a queue."
+            "text": "No, and this trips up nearly everyone. The Department of Veterans Affairs does not lend. It guarantees a portion of a loan made by a private lender, and that guaranty is what makes the lender willing to offer the terms it does. We are a broker, so we do not lend either. We take your application and place it with a lender that does VA work regularly, which matters more than it sounds: a lender that closes VA files every week handles the appraisal process and the entitlement paperwork differently from one that sees them occasionally."
           }
         },
         {
           "@type": "Question",
-          "name": "Which Brevard communities do you work in?",
+          "name": "I found a beachside condo. Can I use my VA entitlement on it?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "All of them: Melbourne, West Melbourne, Palm Bay, Viera, Suntree, Rockledge, Cocoa, Merritt Island, Titusville, Satellite Beach, Indialantic, Melbourne Beach and Cocoa Beach. We are licensed across Florida, but this is home, and it is where we know the appraisers, insurers and title agents by name."
+            "text": "Only if the whole project is VA approved. This is the single biggest surprise for buyers on the barrier island, because VA works differently from FHA here. FHA has a single-unit approval path that lets an individual unit qualify inside a project that is not approved. VA has no comparable route. The project is approved or it is not, and a unit in an unapproved project is not financeable with VA entitlement. VA also does not accept FHA approval as a substitute; the project has to be approved by VA specifically. Send us the building name before you write an offer and we will check where it stands rather than guessing."
           }
         },
         {
           "@type": "Question",
-          "name": "I work on the Space Coast — does that change my options?",
+          "name": "Is a VA appraisal the same thing as a home inspection?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It can. Many Space Coast households include a veteran or an active-duty service member, and VA eligibility is worth checking before assuming a conventional loan is the right route. Shift differentials, overtime and contract income also get treated on their own terms rather than flattened into an average — which matters when a lot of local pay is structured that way."
+            "text": "No, and you should still hire your own inspector. A VA appraisal establishes value and also checks the property against VA's Minimum Property Requirements, which cover things like safe access, working mechanical systems, a sound roof and the absence of obvious hazards. It is a condition check in service of the loan, not a survey of everything a buyer would want to know. On the coast the items that come back most often are roof condition, moisture and wood-destroying organisms. A property that fails an MPR item is usually fixable, but it has to be resolved before closing, which is why it is worth knowing early."
           }
         },
         {
           "@type": "Question",
-          "name": "Is buying a beachside condo different from buying a house here?",
+          "name": "I used a VA loan at a previous duty station. Can I use it again?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Considerably. Lenders assess a condo building as well as the buyer, looking at how many units are rented rather than owner-occupied, whether one owner holds too much of the building, the association's reserves and any pending litigation. Two buildings on the same barrier-island street can differ completely. Send us the building name before you write an offer."
+            "text": "Often yes. Entitlement is not necessarily spent for good. Where the earlier loan has been paid off and the property sold, entitlement can generally be restored. There are also situations where a borrower keeps the first property and uses remaining entitlement on a second, which is common for service members who move on orders. The specifics depend on what you used, what happened to the property and what your Certificate of Eligibility currently shows. Bring us the COE, or we can help you request one, and we will read it with you rather than estimating."
           }
         },
         {
           "@type": "Question",
-          "name": "How much does flood zone matter in Brevard?",
+          "name": "I have PCS orders. How does the occupancy requirement work for me?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Enough to check first. Two houses on the same street can sit in different flood zones, and it affects both what insurance is required and how long closing takes. Finding out while you are shopping is far cheaper than finding out a week before closing."
+            "text": "VA financing is for a home you intend to occupy as your primary residence, and the general expectation is that you move in within a reasonable time after closing. VA recognises that military life does not always fit that pattern, and there are provisions that address occupancy by a spouse and situations created by deployment or orders. The rules here are specific enough that they are worth walking through against your actual orders rather than a summary. Tell us the dates you are working with early, because the timing of a Space Coast purchase around a report date is usually the part that needs planning."
           }
         },
         {
           "@type": "Question",
-          "name": "Why does homeowners insurance come up so early here?",
+          "name": "Do I have to pay the VA funding fee?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Because in coastal Florida it can change what you qualify for. Insurance is part of what a lender counts when assessing affordability, and quotes vary sharply by carrier, roof age and distance from the water. Get quotes early rather than at the end — a wind mitigation inspection or a different carrier sometimes changes the whole picture."
+            "text": "Most borrowers do, and it is a normal part of a VA file. It is not universal, though: veterans receiving VA compensation for a service-connected disability are generally exempt, and there are other exemption categories. Your Certificate of Eligibility is where exemption status shows up, which is one more reason to get the COE in hand early rather than at the end. We will show you exactly where it appears on your figures once we have reviewed your file, rather than quoting you something now."
           }
         }
       ]
@@ -456,248 +499,158 @@
           </svg>
           <span>321-751-4403</span>
         </a>
-        <a href="prequal.html?type=purchase" class="btn btn-gold">Get Prequalified</a>
+        <a href="prequal.html" class="btn btn-gold">Get Prequalified</a>
       </div>
     </div>
   </nav>
 
   <main id="main-content">
-    <!-- HERO -->
     <section class="page-hero">
       <div class="page-hero-inner">
-        <div class="section-eyebrow" style="color:var(--gold);">First-Time Buyers · Brevard County, FL</div>
-        <h1>First-Time Home Buyer in Brevard County, Florida — A Step-by-Step Guide</h1>
-        <p class="lede">
-          Buying your first home on the Space Coast — from Melbourne and Palm Bay to Titusville, Viera, and Merritt Island — is a big step, and it should feel that way. This guide walks you through the process in plain English. Homesite Mortgage has helped Florida families finance homes since 1999, and we're based right here in Brevard County.
+        <div class="section-eyebrow" style="color:var(--gold);">Brevard County &middot; Patrick SFB &middot; Cape Canaveral SFS</div>
+        <h1>VA Loans on the Space Coast</h1>
+        <p style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:0 0 18px;font-size:0.86rem;color:rgba(255,255,255,0.72);">
+          <a href="https://maps.google.com/?cid=11707789900640130591" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+            <span style="color:#f5a623;letter-spacing:1px;" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span><strong>5.0</strong>&nbsp;from&nbsp;<strong>28</strong>&nbsp;verified Google reviews
+          </a>
+          <span aria-hidden="true">&middot;</span>
+          <span>Melbourne, FL &middot; family-owned since 1999</span>
+          <span aria-hidden="true">&middot;</span>
+          <span>NMLS #353790</span>
         </p>
+        <p class="lede">Brevard has Patrick Space Force Base, Cape Canaveral Space Force Station and a large veteran population that stayed after the uniform came off. Plenty of them are entitled to VA financing and are talked out of it by a seller&rsquo;s agent, or walk into a beachside condo that their entitlement cannot reach. Neither of those is inevitable, and both are easier to handle before you write an offer.</p>
         <div class="page-hero-actions">
-          <a href="prequal.html?type=purchase" class="btn btn-gold btn-xl">Start My Free Prequal →</a>
-          <a href="mortgage-calculator.html" class="btn btn-outline btn-lg">Estimate My Monthly Payment</a>
-          <a href="tel:3217514403" class="btn btn-outline btn-lg">Call Us — 321-751-4403</a>
+          <a href="prequal.html" class="btn btn-gold btn-xl">Start My Free Prequal &rarr;</a>
+          <a href="tel:3217514403" class="btn btn-outline btn-lg">Call Us &mdash; 321-751-4403</a>
         </div>
       </div>
     </section>
 
-    <!-- INTRO -->
     <section class="section">
-      <div class="section-inner prose">
-        <div class="section-eyebrow">Buying Your First Home on the Space Coast</div>
-        <h2 class="section-title">You Don't Have to Figure This Out Alone</h2>
-        <p>
-          For most first-time buyers, the hardest part isn't the paperwork — it's not knowing what happens next. How much do you really need saved? Which loan is right for you? What does "prequalified" actually mean to a seller? This guide answers those questions in order, the way we'd walk through them with you over the phone.
-        </p>
-        <p>
-          Brevard County has a wide range of neighborhoods and price points, from <a href="condo-mortgage-brevard-county-fl.html">beachside condo</a>s in Satellite Beach to family homes in Viera and Rockledge. Wherever you're looking on the Space Coast, the path to your first closing follows the same general steps — and understanding them up front removes a lot of the stress.
-        </p>
+      <div class="section-inner">
+        <h2 class="section-title">The VA Does Not Lend. Neither Do We.</h2>
+          <p class="section-sub">The Department of Veterans Affairs guarantees a portion of a loan made by a private lender. That guaranty is what makes a lender willing to offer the terms it offers. The VA itself is not handing you money, and it is not the party deciding your file.</p>
+          <p class="section-sub">We are a broker, so we do not lend either. What we do is take your application and place it with a lender that works VA files regularly. That distinction matters more than it sounds. A lender that closes VA loans every week handles the appraisal process, the entitlement paperwork and the odd cases differently from one that sees a VA file occasionally and treats every step as an exception.</p>
+          <p class="section-sub">Your <strong>Certificate of Eligibility</strong> is the document that establishes what entitlement you have. Get it early. It answers questions that otherwise get guessed at, including whether a funding fee exemption applies to you.</p>
       </div>
     </section>
 
-    <!-- THE PROCESS -->
     <section class="section section-alt">
       <div class="section-inner">
-        <div class="section-eyebrow">The First-Time Buyer Process</div>
-        <h2 class="section-title">Five Steps From "Maybe" to Move-In</h2>
-        <ul class="feature-list">
-          <li><strong>1. Get prequalified.</strong> A free prequal gives you a realistic budget before you shop, so you're looking at homes you can actually finance — not falling in love with one you can't.</li>
-          <li><strong>2. Understand your loan options.</strong> First-time buyers in Florida often consider FHA, VA, or conventional loans. We'll explain the trade-offs and which may fit your situation.</li>
-          <li><strong>3. Find a home and make an offer.</strong> With a prequal in hand, your offer carries more weight. A local real estate agent and a local mortgage broker working together makes this smoother.</li>
-          <li><strong>4. Underwriting and the appraisal.</strong> Your file is reviewed and the home is appraised. We handle the documentation and keep you updated so there are no surprises.</li>
-          <li><strong>5. Close and get your keys.</strong> You review and sign your final documents, and the home is yours. Our team processes and closes your loan in-house.</li>
-        </ul>
-        <p class="section-sub" style="margin-top:18px;">
-          Timelines vary by situation, and not every file moves at the same pace — but knowing the sequence helps you plan with confidence.
-        </p>
+        <h2 class="section-title">The Beachside Condo Trap</h2>
+          <p class="section-sub">This is the one that costs Brevard buyers the most, because the barrier island from Cape Canaveral down through Satellite Beach, Indialantic and Melbourne Beach is full of condominiums, and VA treats them differently from how most people expect.</p>
+          <p class="section-sub"><strong>VA requires the entire project to be approved.</strong> Not the unit &mdash; the project. FHA has a single-unit approval path that lets an individual unit qualify inside a project that is not itself approved. VA has no comparable route. The project is approved or it is not.</p>
+          <p class="section-sub"><strong>And VA does not accept FHA approval as a substitute.</strong> An agent telling you a building is &ldquo;government approved&rdquo; may be describing FHA status, which does not carry over. The project has to be approved by VA specifically, and a lender pursuing approval has to assemble the association&rsquo;s financials, insurance and governing documents to support it.</p>
+          <p class="section-sub">The practical instruction is short: <strong>send us the building name and address before you write the offer.</strong> We will find out where it actually stands. A buyer who discovers this after a contract is signed has lost time they could have spent on a building that works. Our <a href="condo-mortgage-brevard-county-fl.html">Brevard condo financing page</a> covers what else gets reviewed on a condo file.</p>
       </div>
     </section>
 
-    <!-- LOAN PROGRAMS -->
     <section class="section">
       <div class="section-inner">
-        <div class="section-eyebrow">Loan Programs First-Time Florida Buyers Often Use</div>
-        <h2 class="section-title">Common Paths to a First Home</h2>
-        <div class="card-grid">
-          <div class="info-card">
-            <h3><a href="fha.html" style="color:var(--navy);">FHA Loans</a></h3>
-            <p>Insured by the Federal Housing Administration, with flexible credit guidelines and a lower down payment for qualified buyers (terms depend on your situation, not a guarantee). A common starting point for first-time buyers. <a href="fha.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </div>
-          <div class="info-card">
-            <h3><a href="va.html" style="color:var(--navy);">VA Loans</a></h3>
-            <p>For eligible veterans, service members, and certain surviving spouses — these offer exclusive benefits and favorable terms. Eligibility depends on your service and VA guidelines. <a href="va.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </div>
-          <div class="info-card">
-            <h3><a href="conventional.html" style="color:var(--navy);">Conventional Loans</a></h3>
-            <p>Not government-insured, with their own low-down-payment options for qualified buyers. Often a good fit once credit and savings are in a strong place. <a href="conventional.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </div>
-          <div class="info-card">
-            <h3>Down Payment Assistance</h3>
-            <p>Florida offers assistance programs that may help eligible first-time buyers with down payment or closing costs. Availability and rules change — we'll check what's current for your area and situation.</p>
-          </div>
-        </div>
+        <h2 class="section-title">A VA Appraisal Is Not a Home Inspection</h2>
+          <p class="section-sub">Hire your own inspector anyway. The two documents do different jobs and only one of them is working for you.</p>
+          <p class="section-sub">A VA appraisal establishes value and checks the property against VA&rsquo;s <strong>Minimum Property Requirements</strong> &mdash; safe access, working mechanical systems, a sound roof, freedom from obvious hazards. It is a condition check in service of the loan, not a survey of everything a buyer would want to know before committing.</p>
+          <p class="section-sub">On this coast the MPR items that come back most often are roof condition, moisture intrusion and wood-destroying organisms. None of that is unusual here and most of it is fixable, but it has to be resolved before closing, which is the reason to know about it early rather than three days out. Salt air, wind exposure and roof age are simply a larger part of the conversation in Brevard than they are inland.</p>
       </div>
     </section>
 
-    <!-- DOWN PAYMENT ASSISTANCE -->
-    <section class="section section-alt">
-      <div class="section-inner prose">
-        <div class="section-eyebrow">Down Payment Help in Florida</div>
-        <h2 class="section-title">Assistance Programs Worth Asking About</h2>
-        <p>
-          One of the most common reasons people delay buying is the belief that they need a large down payment. For many first-time buyers, that's not the case. Beyond the low-down-payment loan programs above, the Florida Housing Finance Corporation and various local and county programs periodically offer down payment and closing-cost assistance to eligible buyers.
-        </p>
-        <p>
-          These programs have their own income limits, eligibility rules, and funding cycles, and they change over time — so we don't want to quote specifics that might be out of date by the time you read this. What we can do is review your situation and check which current programs you may qualify for. If there's help available for a buyer like you, we'll find it.
-        </p>
-      </div>
-    </section>
-
-    <!-- WHY LOCAL -->
-    <section class="section">
-      <div class="section-inner">
-        <div class="section-eyebrow">Why Work With a Local Broker</div>
-        <h2 class="section-title">Family-Owned, Florida-Only, Based on the Space Coast</h2>
-        <ul class="feature-list">
-          <li><strong>We're in Brevard County.</strong> Homesite Mortgage is based in Melbourne and works with buyers across the Space Coast and all of Florida.</li>
-          <li><strong>Family-owned since 1999.</strong> We've guided Florida families through first homes since 1999.</li>
-          <li><strong>Licensed Florida-only.</strong> Florida is all we do, so we know how things work here.</li>
-          <li><strong>Every prequal is reviewed personally.</strong> You'll get an honest read on your options — not an automated decision.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- FAQ -->
     <section class="section section-alt">
       <div class="section-inner">
-        <div class="section-eyebrow">First-Time Buyer Questions</div>
-        <h2 class="section-title">Answers to What People Ask Us Most</h2>
-        <div class="card-grid">
-          <div class="info-card">
-            <h3>Do you have an office in Brevard County?</h3>
-            <p>Yes — 2754 Aurora Road in Melbourne, and we have been family-owned here since 1999. Come in, or handle it by phone and email if that suits you better. Either way you get the same small team rather than a queue.</p>
-          </div>
-          <div class="info-card">
-            <h3>Which Brevard communities do you work in?</h3>
-            <p>All of them: Melbourne, West Melbourne, Palm Bay, Viera, Suntree, Rockledge, Cocoa, Merritt Island, Titusville, Satellite Beach, Indialantic, Melbourne Beach and Cocoa Beach. We are licensed across Florida, but this is home, and it is where we know the appraisers, insurers and title agents by name.</p>
-          </div>
-          <div class="info-card">
-            <h3>I work on the Space Coast — does that change my options?</h3>
-            <p>It can. Many Space Coast households include a veteran or an active-duty service member, and VA eligibility is worth checking before assuming a conventional loan is the right route. Shift differentials, overtime and contract income also get treated on their own terms rather than flattened into an average — which matters when a lot of local pay is structured that way.</p>
-          </div>
-          <div class="info-card">
-            <h3>Is buying a beachside condo different from buying a house here?</h3>
-            <p>Considerably. Lenders assess a condo building as well as the buyer, looking at how many units are rented rather than owner-occupied, whether one owner holds too much of the building, the association's reserves and any pending litigation. Two buildings on the same barrier-island street can differ completely. Send us the building name before you write an offer.</p>
-          </div>
-          <div class="info-card">
-            <h3>How much does flood zone matter in Brevard?</h3>
-            <p>Enough to check first. Two houses on the same street can sit in different flood zones, and it affects both what insurance is required and how long closing takes. Finding out while you are shopping is far cheaper than finding out a week before closing.</p>
-          </div>
-          <div class="info-card">
-            <h3>Why does homeowners insurance come up so early here?</h3>
-            <p>Because in coastal Florida it can change what you qualify for. Insurance is part of what a lender counts when assessing affordability, and quotes vary sharply by carrier, roof age and distance from the water. Get quotes early rather than at the end — a wind mitigation inspection or a different carrier sometimes changes the whole picture.</p>
-          </div>
-        </div>
+        <h2 class="section-title">Orders, Occupancy and Timing</h2>
+          <p class="section-sub">VA financing is for a home you intend to occupy as your primary residence, with the general expectation that you move in within a reasonable period after closing. That is the rule, and it is worth saying plainly because it rules out using entitlement to buy an investment property.</p>
+          <p class="section-sub">VA does recognise that military life does not always fit a civilian timetable. There are provisions addressing occupancy by a spouse and situations created by deployment or orders. Those provisions are specific enough that they are worth walking through against your actual orders rather than against a summary on a website, including this one.</p>
+          <p class="section-sub">What we would ask for early is the dates you are working with. On the Space Coast the part of a purchase that most often needs planning is fitting it around a report date, and that is a conversation to have at the start rather than once a contract is running.</p>
       </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <!-- BREVARD SPECIFICS -->
     <section class="section">
       <div class="section-inner">
-        <div class="section-eyebrow">What Is Different About Buying Here</div>
-        <h2 class="section-title">Three Things That Decide Brevard Files</h2>
-        <p class="section-sub">
-          Most first-time-buyer advice online is written for somewhere else. On the Space Coast
-          these three come up on nearly every file, and none of them is your credit score.
-        </p>
+        <h2 class="section-title">Entitlement You Have Already Used Is Not Necessarily Gone</h2>
+          <p class="section-sub">A lot of people who move to Brevard used VA financing at a previous duty station and assume that was their one turn. Often it was not.</p>
+          <p class="section-sub">Where an earlier VA loan has been paid off and the property sold, entitlement can generally be restored. There are also circumstances in which a borrower keeps the first property and uses remaining entitlement on a second &mdash; a common pattern for service members who move on orders and hold on to a house.</p>
+          <p class="section-sub">What applies to you depends on what you used, what became of that property, and what your Certificate of Eligibility currently shows. That is a document to read rather than a question to estimate. Bring us the COE, or we will help you request one, and we will go through it with you.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="faq-heading">
+      <div class="section-inner">
+        <div class="section-eyebrow" style="text-align:center;">Common Questions</div>
+        <h2 class="section-title" id="faq-heading">VA Questions We Get Asked on the Space Coast</h2>
         <div class="card-grid" style="margin-top:26px;">
           <div class="info-card">
-            <h3>Insurance can change what you qualify for</h3>
-            <p>A homeowners quote is part of what a lender counts when assessing affordability, and
-            in coastal Florida quotes swing hard on carrier, roof age and distance from the water.
-            A wind mitigation inspection sometimes changes the picture entirely. Get quotes while
-            you are still shopping, not at the end.</p>
+            <h3 style="margin:0 0 10px;font-size:1.08rem;line-height:1.35;">Does the VA actually lend me the money?</h3>
+            <p style="margin:0;">No, and this trips up nearly everyone. The Department of Veterans Affairs does not lend. It guarantees a portion of a loan made by a private lender, and that guaranty is what makes the lender willing to offer the terms it does. We are a broker, so we do not lend either. We take your application and place it with a lender that does VA work regularly, which matters more than it sounds: a lender that closes VA files every week handles the appraisal process and the entitlement paperwork differently from one that sees them occasionally.</p>
           </div>
           <div class="info-card">
-            <h3>Condo buildings are assessed, not just buyers</h3>
-            <p>From Cocoa Beach down to Melbourne Beach, lenders look at rental ratios, reserves,
-            single-owner concentration and pending litigation before they will finance a unit. Two
-            buildings on the same street can get completely different answers. Florida law lets a
-            resale buyer request the association's most recent structural integrity reserve study
-            and, where one applies, the milestone inspection summary (Fla. Stat. &sect; 718.503). Ask before you
-            write the offer, not after.</p>
+            <h3 style="margin:0 0 10px;font-size:1.08rem;line-height:1.35;">I found a beachside condo. Can I use my VA entitlement on it?</h3>
+            <p style="margin:0;">Only if the whole project is VA approved. This is the single biggest surprise for buyers on the barrier island, because VA works differently from FHA here. FHA has a single-unit approval path that lets an individual unit qualify inside a project that is not approved. VA has no comparable route. The project is approved or it is not, and a unit in an unapproved project is not financeable with VA entitlement. VA also does not accept FHA approval as a substitute; the project has to be approved by VA specifically. Send us the building name before you write an offer and we will check where it stands rather than guessing.</p>
           </div>
           <div class="info-card">
-            <h3>Flood zones vary house to house</h3>
-            <p>Brevard sits between the Indian River Lagoon and the Atlantic, and flood designation
-            can change within a single street. It affects the insurance requirement and the closing
-            timeline both. Checking early costs nothing; finding out late costs weeks.</p>
+            <h3 style="margin:0 0 10px;font-size:1.08rem;line-height:1.35;">Is a VA appraisal the same thing as a home inspection?</h3>
+            <p style="margin:0;">No, and you should still hire your own inspector. A VA appraisal establishes value and also checks the property against VA's Minimum Property Requirements, which cover things like safe access, working mechanical systems, a sound roof and the absence of obvious hazards. It is a condition check in service of the loan, not a survey of everything a buyer would want to know. On the coast the items that come back most often are roof condition, moisture and wood-destroying organisms. A property that fails an MPR item is usually fixable, but it has to be resolved before closing, which is why it is worth knowing early.</p>
+          </div>
+          <div class="info-card">
+            <h3 style="margin:0 0 10px;font-size:1.08rem;line-height:1.35;">I used a VA loan at a previous duty station. Can I use it again?</h3>
+            <p style="margin:0;">Often yes. Entitlement is not necessarily spent for good. Where the earlier loan has been paid off and the property sold, entitlement can generally be restored. There are also situations where a borrower keeps the first property and uses remaining entitlement on a second, which is common for service members who move on orders. The specifics depend on what you used, what happened to the property and what your Certificate of Eligibility currently shows. Bring us the COE, or we can help you request one, and we will read it with you rather than estimating.</p>
+          </div>
+          <div class="info-card">
+            <h3 style="margin:0 0 10px;font-size:1.08rem;line-height:1.35;">I have PCS orders. How does the occupancy requirement work for me?</h3>
+            <p style="margin:0;">VA financing is for a home you intend to occupy as your primary residence, and the general expectation is that you move in within a reasonable time after closing. VA recognises that military life does not always fit that pattern, and there are provisions that address occupancy by a spouse and situations created by deployment or orders. The rules here are specific enough that they are worth walking through against your actual orders rather than a summary. Tell us the dates you are working with early, because the timing of a Space Coast purchase around a report date is usually the part that needs planning.</p>
+          </div>
+          <div class="info-card">
+            <h3 style="margin:0 0 10px;font-size:1.08rem;line-height:1.35;">Do I have to pay the VA funding fee?</h3>
+            <p style="margin:0;">Most borrowers do, and it is a normal part of a VA file. It is not universal, though: veterans receiving VA compensation for a service-connected disability are generally exempt, and there are other exemption categories. Your Certificate of Eligibility is where exemption status shows up, which is one more reason to get the COE in hand early rather than at the end. We will show you exactly where it appears on your figures once we have reviewed your file, rather than quoting you something now.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cta-section" aria-labelledby="cta-heading">
-      <div class="section-inner" style="max-width:640px;">
-        <div class="section-eyebrow" style="color:var(--gold);text-align:center;">Ready to start?</div>
-        <h2 class="cta-title" id="cta-heading">Take the First Step Toward Your First Home</h2>
-        <p class="cta-sub">Every submission is reviewed personally; our team typically follows up as soon as we can.</p>
-        <a href="prequal.html?type=purchase" class="btn btn-gold btn-xl">Start My Free Prequal →</a>
-        <p class="cta-disclaimer">
-          Or call us directly: <a href="tel:3217514403">321-751-4403</a> · <a href="mailto:tcloans1@gmail.com" style="color:rgba(255,255,255,0.5);">tcloans1@gmail.com</a>
+    <section class="section">
+      <div class="section-inner" style="text-align:center;">
+        <h2 class="section-title">Send us the building name before you write the offer.</h2>
+        <p class="section-sub">Call 321-751-4403 or start a prequalification &mdash; no hard credit pull to begin &mdash; and we will tell you plainly what your entitlement can reach and what it cannot. If you do not have a Certificate of Eligibility yet, we will help you get one.</p>
+        <div class="page-hero-actions" style="justify-content:center;margin-top:22px;">
+          <a href="prequal.html" class="btn btn-gold btn-xl">Start My Free Prequal &rarr;</a>
+          <a href="tel:3217514403" class="btn btn-outline btn-lg">Call Us &mdash; 321-751-4403</a>
+        </div>
+        <p class="section-sub" style="margin-top:24px;font-size:0.88rem;">
+          Homesite Mortgage Corporation is a licensed Florida mortgage broker, NMLS #353790, originating loans in Florida only. This page is general information about VA home loan benefits and is not affiliated with, endorsed by, or sponsored by the U.S. Department of Veterans Affairs or any government agency. It is not legal advice, not an offer of credit and not a commitment to lend. All loans are subject to credit approval and underwriting. Confirm eligibility, entitlement and project approval for a specific situation and property with us and with the VA.
         </p>
       </div>
     </section>
-      <section style="background:var(--off-white);padding:48px 0;border-top:1px solid rgba(10,31,60,0.06);">
-      <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px;text-align:center;">
-        <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-text);margin:0 0 8px;">More Areas We Serve</p>
-        <h2 style="color:var(--navy);font-size:1.4rem;margin:0 0 12px;">Homesite Mortgage helps first-time buyers across all of Florida</h2>
-        <a href="areas.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Browse first-time buyer guides for every Florida region &rarr;</a>
-      </div>
-    </section>
-  
 
-    <!-- RELATED LOAN PROGRAMS (internal linking) -->
     <section class="section section-alt" aria-labelledby="related-heading">
       <div class="section-inner">
         <div class="section-eyebrow">Explore More</div>
         <h2 class="section-title" id="related-heading">Other Florida Loan Programs</h2>
         <div class="card-grid">
           <article class="info-card">
-            <h3><a href="va-loans-brevard-county-fl.html" style="color:var(--navy);">VA Loans on the Space Coast</a></h3>
-            <p>Patrick SFB, entitlement you already used, and the beachside condo trap. <a href="va-loans-brevard-county-fl.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
+            <h3><a href="va.html" style="color:var(--navy);">VA Loans &mdash; Program Overview</a></h3>
+            <p>How VA financing works statewide, beyond the Space Coast specifics. <a href="va.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
+          </article>
+          <article class="info-card">
+            <h3><a href="condo-mortgage-brevard-county-fl.html" style="color:var(--navy);">Brevard Condo Financing</a></h3>
+            <p>On a condo the building gets reviewed alongside you. What that involves. <a href="condo-mortgage-brevard-county-fl.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
           </article>
           <article class="info-card">
             <h3><a href="mortgage-broker-melbourne-fl.html" style="color:var(--navy);">Mortgage Broker in Melbourne</a></h3>
             <p>Our home office, and how a local broker works a Brevard County file. <a href="mortgage-broker-melbourne-fl.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
           </article>
           <article class="info-card">
+            <h3><a href="first-time-home-buyer-brevard-county-fl.html" style="color:var(--navy);">First-Time Buyers in Brevard</a></h3>
+            <p>The steps from &ldquo;maybe&rdquo; to move-in, and the assistance worth asking about. <a href="first-time-home-buyer-brevard-county-fl.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
+          </article>
+          <article class="info-card">
+            <h3><a href="new-construction-mortgage-viera-fl.html" style="color:var(--navy);">New Construction in Viera</a></h3>
+            <p>You pick the lender, not the builder &mdash; and what CDD assessments do to qualifying. <a href="new-construction-mortgage-viera-fl.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
+          </article>
+          <article class="info-card">
             <h3><a href="purchase.html" style="color:var(--navy);">Home Purchase</a></h3>
             <p>Buy a home in Florida with personal guidance from contract to close. <a href="purchase.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </article>
-          <article class="info-card">
-            <h3><a href="fha.html" style="color:var(--navy);">FHA Loans</a></h3>
-            <p>Flexible credit and low-down-payment options for qualified borrowers. <a href="fha.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </article>
-          <article class="info-card">
-            <h3><a href="va.html" style="color:var(--navy);">VA Loans</a></h3>
-            <p>Exclusive financing benefits for eligible veterans and service members. <a href="va.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </article>
-          <article class="info-card">
-            <h3><a href="conventional.html" style="color:var(--navy);">Conventional Loans</a></h3>
-            <p>Flexible options for qualified Florida buyers. <a href="conventional.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </article>
-          <article class="info-card">
-            <h3><a href="refinance.html" style="color:var(--navy);">Refinance</a></h3>
-            <p>Already own? Lower your payment, shorten your term, or access equity. <a href="refinance.html" style="color:var(--navy);font-weight:600;text-decoration:underline;">Learn more &rarr;</a></p>
-          </article>
-          <article class="info-card">
-            <h3>Not sure which fits?</h3>
-            <p>Start a quick prequal and we'll help you find the right Florida loan program. <a href="prequal.html?type=purchase" style="color:var(--navy);font-weight:600;text-decoration:underline;">Start My Free Prequal &rarr;</a></p>
           </article>
         </div>
       </div>
     </section>
-
-  <!-- ── FOOTER ── -->
   </main>
 
   <footer class="footer" role="contentinfo">
@@ -773,7 +726,7 @@
   <!-- Sticky mobile CTA -->
   <div class="sticky-cta" aria-label="Quick actions">
     <a href="tel:3217514403" class="btn btn-outline">📞 Call Us</a>
-    <a href="prequal.html?type=purchase" class="btn btn-gold">Get Prequalified</a>
+    <a href="prequal.html" class="btn btn-gold">Get Prequalified</a>
   </div>
 
   <script>
