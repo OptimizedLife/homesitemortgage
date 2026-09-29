@@ -239,7 +239,16 @@ export default {
     // Source rides in the subject line so it is visible in the inbox list
     // without opening anything, and so a single Gmail filter can count a
     // month of AI-sourced leads. Cheaper and more reliable than a dashboard.
-    const sourceTag = fields.heard_about_us || fields.referrer_source || '';
+    //
+    // A click ID is checked first because it is the one objective signal here.
+    // The Google Ads tag only fires with cookie consent, so the inbox is the only
+    // reliable count of ad-sourced leads; without this, a paid lead whose visitor
+    // skipped "how did you hear about us" arrived with nothing in the subject.
+    // js/attribution.js holds click IDs for the session only, so a present ID
+    // means an ad click in this same visit. What the visitor told us still shows
+    // in the body under "Told us they found us via".
+    const paidClick = fields.gclid || fields.gbraid || fields.wbraid;
+    const sourceTag = paidClick ? 'Google Ads' : (fields.heard_about_us || fields.referrer_source || '');
     const subject = `[${lead_score.band}] New ${formSource === 'prequal' ? 'Prequalification' : 'Contact'} Lead — ${name}${sourceTag ? ` · via ${sourceTag}` : ''}`;
     // One Resend call was the entire lead pipeline. Resend rate-limits at a couple
     // of requests per second, so two visitors landing together — exactly what an ad
