@@ -58,6 +58,13 @@
     return null;
   }
 
+  // Our own tagged links. The Google Business Profile sends the same google.com
+  // referrer as organic search, so a profile lead looked like a search lead.
+  // Links placed on the profile (website button, posts) carry utm_source=gbp.
+  function ownTag(v) {
+    return /^gbp$/i.test(v) ? 'Google Business Profile' : null;
+  }
+
   // HOSTNAME ONLY, never the full referrer URL. A referring search page can
   // carry the visitor's query — and sometimes their own details — in its query
   // string, and that is nonpublic personal information the moment it concerns a
@@ -82,8 +89,9 @@
     if (!sessionStorage.getItem('referrer_source')) {
       // An assistant that stamps utm_source=chatgpt.com is more reliable than a
       // Referer header, so prefer it and normalise it to the same label.
+      // Same for our own tagged links.
       var fromUtm = url.get('utm_source');
-      var src = (fromUtm && label(fromUtm)) || referrerSource();
+      var src = (fromUtm && (label(fromUtm) || ownTag(fromUtm))) || referrerSource();
       if (src) sessionStorage.setItem('referrer_source', src);
     }
   } catch (e) { /* storage blocked — best effort, never break the page */ }
