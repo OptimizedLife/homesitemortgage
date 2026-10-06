@@ -2,6 +2,22 @@
 <html lang="en">
 <head>
   <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/8005e4bb409abe9cf9e8ef20e939de30/script.js"></script>
+  <!-- Cookie banner on phones. CookieYes's default bottom banner is 387px of
+       content squeezed into a 270px box on a 390px-wide phone: it covered the
+       prequal form's Continue button and pushed "Reject All" off the screen.
+       Same wording and the same three choices, set compactly in one row. -->
+  <style id="cky-compact">
+    @media (max-width: 576px) {
+      .cky-consent-container .cky-notice-content-wrapper { padding: 12px 0 8px !important; }
+      .cky-consent-container .cky-title { display: none !important; }
+      .cky-consent-container .cky-notice-des { padding: 0 14px !important; }
+      .cky-consent-container .cky-notice-des,
+      .cky-consent-container .cky-notice-des * { font-size: 12.5px !important; line-height: 1.45 !important; }
+      .cky-consent-container .cky-notice-btn-wrapper { flex-direction: row !important; gap: 6px !important; padding: 0 14px !important; margin-top: 10px !important; }
+      .cky-consent-container .cky-notice-btn-wrapper .cky-btn { flex: 1 1 0 !important; width: auto !important; margin: 0 !important; padding: 7px 4px !important; font-size: 13px !important; }
+      .cky-consent-container .cky-consent-bar > div:last-child { padding: 0 14px 8px !important; }
+    }
+  </style>
   <!-- Google Analytics 4 — gated behind CookieYes "Analytics" consent -->
   <script src="/js/consent-mode.js" defer></script>
   <script src="/js/ga4.js" defer></script>
@@ -512,7 +528,7 @@
           We have not replaced humans with workflows. You hear from our team personally — as soon as we can after you submit your prequal — and processing and closing are handled with the same direct line.
         </p>
         <ul class="feature-list">
-          <li><strong>Step 1.</strong> Submit a short prequal online — takes about 5 minutes.</li>
+          <li><strong>Step 1.</strong> Submit a short prequal online — takes about 2 minutes.</li>
           <li><strong>Step 2.</strong> Your submission is reviewed personally and we call you to discuss your options.</li>
           <li><strong>Step 3.</strong> We help you understand which loan programs you may qualify for and what they would mean for your situation.</li>
           <li><strong>Step 4.</strong> Our team handles documentation, underwriting coordination, and closing — start to finish, same names.</li>
@@ -570,7 +586,7 @@
     <section class="cta-section" aria-labelledby="cta-heading">
       <div class="section-inner" style="max-width:640px;">
         <div class="section-eyebrow" style="color:var(--gold);text-align:center;">Ready to start?</div>
-        <h2 class="cta-title" id="cta-heading">Free, No-Pressure Prequal in About 5 Minutes</h2>
+        <h2 class="cta-title" id="cta-heading">Free, No-Pressure Prequal in About 2 Minutes</h2>
         <p class="cta-sub">Every submission is reviewed personally; our team typically follows up as soon as we can.</p>
         <a href="prequal.html?type=purchase" class="btn btn-gold btn-xl">Start My Free Prequal →</a>
         <p class="cta-disclaimer">
